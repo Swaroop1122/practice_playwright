@@ -4,7 +4,7 @@ const config: PlaywrightTestConfig = {
   use:{
     baseURL:"http://zero.webappsecurity.com/login.html",
     browserName:"chromium",
-    headless:false,
+    headless:true,
     video:"on-first-retry",
     screenshot:"only-on-failure"
   },
