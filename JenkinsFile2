@@ -19,13 +19,19 @@ pipeline {
         }
          stage('Generate Report') {
             steps {
-            sh './node_modules/.bin/allure generate ./my-allure-results'
+            //sh './node_modules/.bin/allure generate ./my-allure-results'
             }
         }
     }
     post { 
         always { 
             echo 'I will always say Hello again!'
+            Allure_Report([
+            
+            includeProperties: false, jdk: '', results: [[path: 'my-allure-results']]
+            ])
+    }
+}
         }
     }
 }
