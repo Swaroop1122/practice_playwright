@@ -11,7 +11,7 @@ const config: PlaywrightTestConfig = {
   },
   timeout:10000,
   fullyParallel:true,
-  workers:2,
+  workers:3,
   retries:0,
   reporter:[["dot"],["json",{
     outputFile:"jsonReports/jsonReport.json"
