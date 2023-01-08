@@ -17,11 +17,7 @@ pipeline {
                 stash name: 'my-allure-results', includes: 'my-allure-results/*'
             }
         }
-         stage('Generate Report') {
-            steps {
-            //sh './node_modules/.bin/allure generate ./my-allure-results'
-            }
-        }
+  
     }
     post { 
         always { 
