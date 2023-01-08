@@ -1,40 +1,30 @@
 pipeline {
-
-    agent { any } 
+    agent { docker { image 'mcr.microsoft.com/playwright:v1.29.1-focal' } }
     stages {
-    
-        stage('Back-end') {
-            agent {
-                docker {
-                  label 'dockerserver'  // both label and image
-                  image 'mcr.microsoft.com/playwright:v1.29.1-focal'
-                }
-            }
-            steps {
-                sh 'mvn --version'
-            }
-        }
-        
         stage('Build') {
             steps {
                 git branch: 'develop', credentialsId: '1', url: 'https://github.com/Swaroop1122/practice_playwright.git'
             }
         }
-        stage('Test') {
+        stage('Install') {
             steps {
                sh 'npm install'
             }
         }
-        stage('Release') {
+        stage('Test') {
             steps {
                 sh 'npm test'
             }
         }
-         
+         stage('Generate Report') {
+            steps {
+                sh 'npm test'
+            }
+        }
     }
     post { 
-        always {
-            echo 'Allure result Generated Successfully'
+        always { 
+            echo 'I will always say Hello again!'
         }
     }
 }
