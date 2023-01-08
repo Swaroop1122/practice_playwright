@@ -19,10 +19,11 @@ pipeline {
         }
          stage('Generate Report') {
             steps {
-    script {
+            sh './node_modules/.bin/allure generate ./my-allure-results'
+       script {
             unstash 'my-allure-results
             allure results: [[path: 'my-allure-results']]
-            sh './node_modules/.bin/allure generate ./my-allure-results'
+            
 
     }
     }
