@@ -16,16 +16,10 @@ pipeline {
                 sh 'npm test'
             }
         }
-         stage('Report') {
-            steps {
-             sh 'npm i -D @playwright/test allure-playwright'
-             sh 'allure generate my-allure-results -o allure-report --clean'
-            }
-        }
+         
     }
     post { 
-        always { 
-           
+        always {
             echo 'Allure result Generated Successfully'
         }
     }
