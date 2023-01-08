@@ -1,13 +1,20 @@
 pipeline {
 
-    stage('Initialize')
-    {
-        def dockerHome = tool 'MyDocker'
-        def mavenHome  = tool 'MyMaven'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-    }
-    agent { docker { image 'mcr.microsoft.com/playwright:v1.29.1-focal' } }
+    agent { label 'dockerserver' } 
     stages {
+    
+        stage('Back-end') {
+            agent {
+                docker {
+                  label 'dockerserver'  // both label and image
+                  image 'mcr.microsoft.com/playwright:v1.29.1-focal'
+                }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        
         stage('Build') {
             steps {
                 git branch: 'develop', credentialsId: '1', url: 'https://github.com/Swaroop1122/practice_playwright.git'
