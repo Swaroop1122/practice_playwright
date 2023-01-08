@@ -14,7 +14,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test'
-                stash name: 'my-allure-results', includes: 'my-allure-results/*'
             }
         }
   
@@ -22,9 +21,6 @@ pipeline {
     post { 
         always { 
             echo 'I will always say Hello again!'
-            allure([
-                includeProperties: false, jdk: '', results: [[path: 'my-allure-results']]
-            ])
         }
     }
 }
