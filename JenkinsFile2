@@ -18,8 +18,16 @@ pipeline {
         }
          stage('Generate Report') {
             steps {
-                sh 'allure generate my-allure-results -o allure-report --clean'
-            }
+    script {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'my-allure-results']]
+            ])
+    }
+    }
         }
     }
     post { 
