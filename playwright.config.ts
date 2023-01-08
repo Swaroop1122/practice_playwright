@@ -1,16 +1,17 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
+import { type PlaywrightTestConfig , devices } from '@playwright/test';
+
 const config: PlaywrightTestConfig = {
   testDir:'tests',
   use:{
-    baseURL:"http://zero.webappsecurity.com/login.html",
+    baseURL:"http://zero.webappsecurity.com",
     browserName:"chromium",
-    headless:true,
+    headless:false,
     video:"on-first-retry",
     screenshot:"only-on-failure"
   },
   timeout:10000,
   fullyParallel:true,
-  workers:2,
+  workers:6,
   retries:0,
   reporter:[["dot"],["json",{
     outputFile:"jsonReports/jsonReport.json"
@@ -18,7 +19,21 @@ const config: PlaywrightTestConfig = {
     detail: true,
     outputFolder: 'my-allure-results',
     suiteTitle: false
-  }]]
+  }]],
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+  ]
     
 };
 

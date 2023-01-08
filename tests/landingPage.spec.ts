@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import { allure, LabelName } from "allure-playwright";
 
-test.describe('Login Page Suite',()=>{
+test.describe.parallel('Login Page Suite',()=>{
 
     test.beforeEach(async ({page}) => {
         await page.goto("/");
@@ -29,13 +29,4 @@ test.describe('Login Page Suite',()=>{
       expect (await onlineTab.textContent()).toContain("Online Banking");
       await page.click("#online-banking");
     })
-
-   /* test('Login to the browser', async({page})=>{
-     await page.type("#user_login","username");
-     page.pause();
-     await page.type("#user_password","password");
-     page.pause();
-     await page.click("input[type='submit']");
-     page.waitForTimeout(1000);
-    }) */
 })

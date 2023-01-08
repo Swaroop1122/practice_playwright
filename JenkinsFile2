@@ -6,12 +6,17 @@ pipeline {
                 git branch: 'develop', credentialsId: '1', url: 'https://github.com/Swaroop1122/practice_playwright.git'
             }
         }
-        stage('Test') {
+        stage('Install') {
             steps {
                sh 'npm install'
             }
         }
-        stage('Release') {
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+         stage('Generate Report') {
             steps {
                 sh 'npm test'
             }

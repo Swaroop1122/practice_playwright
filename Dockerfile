@@ -24,10 +24,4 @@ RUN apt-get update && apt-get -y install libnss3 libatk-bridge2.0-0 libdrm-dev l
 # Install the dependencies in Node environment
 RUN npm install
 
-#name: Build image (application)
-#docker build -t playwright-docker .
 
-
-#running
-#docker run -it playwright-docker:latest npm run test
-RUN -it playwright-docker:latest npm run test
