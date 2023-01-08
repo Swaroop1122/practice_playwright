@@ -20,11 +20,7 @@ pipeline {
             steps {
     script {
             allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'my-allure-results']]
+                   allure results: [[path: 'my-allure-results']]
             ])
     }
     }
