@@ -18,7 +18,7 @@ pipeline {
         }
          stage('Generate Report') {
             steps {
-                sh 'npm test'
+                sh 'allure generate my-allure-results -o allure-report --clean'
             }
         }
     }
