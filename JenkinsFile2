@@ -14,11 +14,13 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test'
+                stash name: 'allure-results', includes: 'my-allure-results/*'
             }
         }
          stage('Generate Report') {
             steps {
     script {
+            unstash 'my-allure-results'
             allure results: [[path: 'my-allure-results']]
 
     }
