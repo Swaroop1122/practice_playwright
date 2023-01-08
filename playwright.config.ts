@@ -6,8 +6,9 @@ const config: PlaywrightTestConfig = {
     baseURL:"http://zero.webappsecurity.com",
     browserName:"chromium",
     headless:true,
-    video:"on-first-retry",
-    screenshot:"only-on-failure"
+    video:"retain-on-failure",
+    screenshot:"only-on-failure",
+    trace:"retain-on-failure"
   },
   timeout:10000,
   fullyParallel:true,
